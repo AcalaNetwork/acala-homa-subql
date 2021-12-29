@@ -22,3 +22,28 @@ dataSources:
           filter:
             module: homa 
             method: Minted
+        - handler: handleRequestedRedeem 
+          kind: substrate/EventHandler
+          filter:
+            module: homa 
+            method: RequestedRedeem
+        - handler: handleRequestedCancelled 
+          kind: substrate/EventHandler
+          filter:
+            module: homa 
+            method: RequestedCancelled
+        - handler: handleRedeemedByFastMatch 
+          kind: substrate/EventHandler
+          filter:
+            module: homa 
+            method: RedeemedByFastMatch
+        - handler: handleRedeemedByUnbond 
+          kind: substrate/EventHandler
+          filter:
+            module: homa 
+            method: RedeemedByUnbond
+        - handler: handleWithdrawRedemption 
+          kind: substrate/EventHandler
+          filter:
+            module: homa 
+            method: WithdrawRedemption
