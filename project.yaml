@@ -6,9 +6,8 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: '0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b'
-  endpoint: wss://karura.api.onfinality.io/public-ws
-  dictionary: https://api.subquery.network/sq/AcalaNetwork/karura-dictionary
+  genesisHash: '0xdbfe6ec93682a8441a55ca06a251da42a36eaedc9deeb4cc290de6a3beab3c66'
+  endpoint: wss://kusama-1.polkawallet.io:3000
   chaintypes:
     file: './src/types.json'
 dataSources:
