@@ -1,7 +1,7 @@
 import { SubstrateEvent } from "@subql/types/dist/interfaces";
 import { getAccount, getHomaHistory, getKVData, mapUpdateKVData } from "../utils";
 
-export async function handleMint (event: SubstrateEvent) {
+export async function handleMinted (event: SubstrateEvent) {
   const blockNumber = event.block.block.header.number.toBigInt();
 
   /// The minter use staking currency to mint liquid currency. \[minter,
@@ -24,6 +24,9 @@ export async function handleMint (event: SubstrateEvent) {
     { key: 'liquidAmountReceived' },
     { key: 'liquidAmountAddToVoid'}
   ]);
+
+
+  record.save();
 }
 
 export async function handleRequestedRedeem(event: SubstrateEvent) {
@@ -47,6 +50,8 @@ export async function handleRequestedRedeem(event: SubstrateEvent) {
     { key: 'liquidAmount'},
     { key: 'allowFastMatch' }
   ]);
+
+  record.save();
 }
 
 export async function handleRequestedCancelled(event: SubstrateEvent) {
@@ -69,6 +74,8 @@ export async function handleRequestedCancelled(event: SubstrateEvent) {
     { key: 'redeemer'},
     { key: 'cancelledLiquidAmount'},
   ]);
+
+  record.save();
 }
 
 export async function handleRedeemedByFastMatch(event: SubstrateEvent) {
@@ -94,6 +101,8 @@ export async function handleRedeemedByFastMatch(event: SubstrateEvent) {
     { key: 'feeInLiquid'},
     { key: 'redeemedStakingAmount'},
   ]);
+
+  record.save();
 }
 
 export async function handleRedeemedByUnbond(event: SubstrateEvent) {
@@ -110,7 +119,7 @@ export async function handleRedeemedByUnbond(event: SubstrateEvent) {
   record.type = 'RedeemedByUnbond';
   record.atBlock = blockNumber;
   record.atBlockHash = event.block.block.hash.toString();
-  record.atExtrinsicHash = event.extrinsic.extrinsic.hash.toString();
+  record.atExtrinsicHash = event.extrinsic?.extrinsic.hash.toString() || '';
   record.timestamp = event.block.timestamp;
 
   record.data = mapUpdateKVData(getKVData(event.event.data), [
@@ -119,6 +128,8 @@ export async function handleRedeemedByUnbond(event: SubstrateEvent) {
     { key: 'liquidAmount'},
     { key: 'unbondingStakingAmount'},
   ]);
+
+  record.save();
 }
 
 export async function handleWithdrawRedemption(event: SubstrateEvent) {
@@ -142,4 +153,6 @@ export async function handleWithdrawRedemption(event: SubstrateEvent) {
     { key: 'redeemer'},
     { key: 'redemptionAmount'}
   ]);
+
+  record.save();
 }

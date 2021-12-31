@@ -1,10 +1,5 @@
 import { AnyTuple, ArgsDef } from '@polkadot/types/types';
 
-// export const getKVData = (data: AnyTuple, keys?: AnyTuple) => (keys || (data as any).typeDef).map((item, index) => ({
-//     key: item.type.toString(),
-//     value: data[index].toString()
-// }))
-
 export const getKVData = (data: AnyTuple, keys?: ArgsDef) => {
     if (!data) return [];
 
