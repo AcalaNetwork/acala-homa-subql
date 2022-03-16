@@ -1,25 +1,98 @@
-type KVData @jsonField {
-  key: String
-  value: String
-  type: String
+type Extrinsic @entity {
+  id: ID! # extrinsic hash
+  hash: String
+  block: Block
+
+  address: Account
+  method: String
+  section: String
 }
 
 type Account @entity {
   id: ID! # user address
   address: String
+  txCount: BigInt
+
+  userProvision: [UserProvision] @derivedFrom(field: "owner")
+
+  # history
+  mint: [Mint] @derivedFrom(field: "address")
+  redeemRequestCancelled: [RedeemRequestCancelled] @derivedFrom(field: "address")
+  requestedRedeem: [RequestedRedeem] @derivedFrom(field: "address")
+  redeemedByUnbond: [RedeemedByUnbond] @derivedFrom(field: "address")
+  redeemed: [Redeemed] @derivedFrom(field: "address")
 }
 
-type HomaHistory @entity {
-  id: ID! # `extrinshcHash`-`event idx`
+type Mint @entity {
+  # homaLite: user, amount_staked, amount_minted
+  # homa:     minter,staking_currency_amount, liquid_amount_received, liquid_amount_added_to_void
+  id: ID!
+
   address: Account
+  type: String
 
-  type: String # event name
-  subType: String
+  amountStaked: BigInt
+  amountMinted: BigInt
+  stakingCurrencyAmount: BigInt
+  liquidAmountReceived: BigInt
+  liquidAmountAddedToVoid: BigInt
 
-  atBlock: BigInt
-  atBlockHash: String
-  atExtrinsicHash: String
+  block: Block
+  extrinsic: Extrinsic
   timestamp: Date
+}
 
-  data: [KVData]
+type RedeemRequestCancelled @entity {
+  # homaLite: who, liquid_amount_unreserved
+  # homa:     redeemer, cancelled_liquid_amount
+  id: ID!
+
+  address: Account
+  amount: BigInt
+
+  block: Block
+  extrinsic: Extrinsic
+  timestamp: Date
+}
+
+type RequestedRedeem @entity {
+  # homalite: who, liquid_amount, extra_fee
+  # homa:     redeemer, liquid_amount, allow_fast_match
+  id: ID!
+
+  address: Account
+  amount: BigInt
+  allowFastMatch: Boolean
+  extraFee: BigInt
+
+  block: Block
+  extrinsic: Extrinsic
+  timestamp: Date
+}
+
+type RedeemedByUnbond @entity {
+  # homa:  redeemer,era_index_when_unbond, liquid_amount, unbonding_staking_amount
+  id: ID!
+
+  address: Account
+  eraIndexWhenUnbond: BigInt
+  liquidAmount: BigInt
+  unbondingStakingAmount: BigInt
+
+  block: Block
+  extrinsic: Extrinsic
+  timestamp: Date
+}
+
+type Redeemed @entity {
+  #homalite: user, staking_amount_redeemed, liquid_amount_deducted
+  id: ID!
+
+  address: Account
+  stakingAmountRedeemed: BigInt
+  liquidAmountDeducted: BigInt
+
+  block: Block
+  extrinsic: Extrinsic
+  timestamp: Date
 }
