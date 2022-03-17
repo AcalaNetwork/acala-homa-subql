@@ -1,1 +1,30 @@
-export * from '../handlers';
+import { SubstrateEvent } from "@subql/types"
+import { minted } from "../handlers/minted";
+import { redeemed } from "../handlers/redeemed";
+import { redeemedByFastMatch } from "../handlers/redeemedByFastMatch";
+import { RedeemedByUnbond } from "../handlers/RedeemedByUnbond";
+import { redeemRequestCancelled } from "../handlers/redeemRequestCancelled";
+import { redeemRequested } from "../handlers/redeemRequested";
+import { requestedRedeem } from "../handlers/requestedRedeem";
+
+export const handleMinted = async (event: SubstrateEvent) => {
+  await minted(event);
+}
+export const handleRedeemRequestCancelled = async (event: SubstrateEvent) => {
+  await redeemRequestCancelled(event);
+}
+export const handleRedeemRequested = async (event: SubstrateEvent) => {
+  await redeemRequested(event);
+}
+export const handleRedeemed = async (event: SubstrateEvent) => {
+  await redeemed(event);
+}
+export const handleRequestedRedeem = async (event: SubstrateEvent) => {
+  await requestedRedeem(event);
+}
+export const handleRedeemedByFastMatch = async (event: SubstrateEvent) => {
+  await redeemedByFastMatch(event);
+}
+export const handleRedeemedByUnbond = async (event: SubstrateEvent) => {
+  await RedeemedByUnbond(event);
+}

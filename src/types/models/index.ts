@@ -2,7 +2,23 @@
 
 // Auto-generated , DO NOT EDIT
 
+export {Block} from "./Block"
+
+export {Extrinsic} from "./Extrinsic"
+
 export {Account} from "./Account"
 
-export {HomaHistory} from "./HomaHistory"
+export {Mint} from "./Mint"
+
+export {RedeemRequestCancelled} from "./RedeemRequestCancelled"
+
+export {RequestedRedeem} from "./RequestedRedeem"
+
+export {RedeemRequested} from "./RedeemRequested"
+
+export {RedeemedByUnbond} from "./RedeemedByUnbond"
+
+export {Redeemed} from "./Redeemed"
+
+export {RedeemedByFastMatch} from "./RedeemedByFastMatch"
 

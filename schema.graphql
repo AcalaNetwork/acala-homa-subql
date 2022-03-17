@@ -1,3 +1,10 @@
+type Block @entity {
+  id: ID! # block number
+  hash: String
+  number: BigInt
+  timestamp: Date
+}
+
 type Extrinsic @entity {
   id: ID! # extrinsic hash
   hash: String
@@ -12,8 +19,6 @@ type Account @entity {
   id: ID! # user address
   address: String
   txCount: BigInt
-
-  userProvision: [UserProvision] @derivedFrom(field: "owner")
 
   # history
   mint: [Mint] @derivedFrom(field: "address")
@@ -56,13 +61,24 @@ type RedeemRequestCancelled @entity {
 }
 
 type RequestedRedeem @entity {
-  # homalite: who, liquid_amount, extra_fee
   # homa:     redeemer, liquid_amount, allow_fast_match
   id: ID!
 
   address: Account
   amount: BigInt
   allowFastMatch: Boolean
+
+  block: Block
+  extrinsic: Extrinsic
+  timestamp: Date
+}
+
+type RedeemRequested @entity {
+  # homalite: who, liquid_amount, extra_fee
+  id: ID!
+
+  address: Account
+  amount: BigInt
   extraFee: BigInt
 
   block: Block
@@ -91,6 +107,19 @@ type Redeemed @entity {
   address: Account
   stakingAmountRedeemed: BigInt
   liquidAmountDeducted: BigInt
+
+  block: Block
+  extrinsic: Extrinsic
+  timestamp: Date
+}
+
+type RedeemedByFastMatch @entity {
+  id: ID!
+
+  address: Account
+  matchedLiquidAmount: BigInt
+  feeInLiquid: BigInt
+  redeemedStakingAmount: BigInt
 
   block: Block
   extrinsic: Extrinsic

@@ -6,8 +6,9 @@ repository: ''
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: '0xdbfe6ec93682a8441a55ca06a251da42a36eaedc9deeb4cc290de6a3beab3c66'
-  endpoint: wss://kusama-1.polkawallet.io:3000
+  genesisHash: '0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b'
+  endpoint: wss://karura.api.onfinality.io/public-ws
+  dictionary: https://api.subquery.network/sq/AcalaNetwork/karura-dictionary
   chaintypes:
     file: './src/types.json'
 dataSources:
@@ -21,28 +22,43 @@ dataSources:
           filter:
             module: homa 
             method: Minted
-        - handler: handleRequestedRedeem 
+        - handler: handleMinted 
+          kind: substrate/EventHandler
+          filter:
+            module: homaLite 
+            method: Minted
+        - handler: handleRedeemRequestCancelled
           kind: substrate/EventHandler
           filter:
             module: homa 
+            method: RedeemRequestCancelled
+        - handler: handleRedeemRequestCancelled
+          kind: substrate/EventHandler
+          filter:
+            module: homaLite
+            method: RedeemRequestCancelled
+        - handler: handleRedeemRequested
+          kind: substrate/EventHandler
+          filter:
+            module: homaLite
+            method: RedeemRequested
+        - handler: handleRedeemed
+          kind: substrate/EventHandler
+          filter:
+            module: homaLite
+            method: Redeemed
+        - handler: handleRequestedRedeem
+          kind: substrate/EventHandler
+          filter:
+            module: homa
             method: RequestedRedeem
-        - handler: handleRequestedCancelled 
+        - handler: handleRedeemedByFastMatch
           kind: substrate/EventHandler
           filter:
-            module: homa 
-            method: RequestedCancelled
-        - handler: handleRedeemedByFastMatch 
-          kind: substrate/EventHandler
-          filter:
-            module: homa 
+            module: homa
             method: RedeemedByFastMatch
-        - handler: handleRedeemedByUnbond 
+        - handler: handleRedeemedByUnbond
           kind: substrate/EventHandler
           filter:
-            module: homa 
+            module: homa
             method: RedeemedByUnbond
-        - handler: handleWithdrawRedemption 
-          kind: substrate/EventHandler
-          filter:
-            module: homa 
-            method: WithdrawRedemption
