@@ -21,6 +21,7 @@ export const minted = async (event: SubstrateEvent) => {
   } else {
     const [account, staking_currency_amount, liquid_amount_received, liquid_amount_added_to_void] = event.event.data as unknown as [AccountId, Balance, Balance, Balance];
     await getAccount(account.toString())
+    history.addressId = account.toString();
     history.stakingCurrencyAmount = BigInt(staking_currency_amount.toString());
     history.liquidAmountReceived = BigInt(liquid_amount_received.toString());
     history.liquidAmountAddedToVoid = BigInt(liquid_amount_added_to_void.toString());
