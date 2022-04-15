@@ -6,7 +6,7 @@ import { ensureBlock, ensureExtrinsic } from "./event";
 export const minted = async (event: SubstrateEvent) => {
   const blockData = await ensureBlock(event);
 
-  const historyId = `${blockData.hash}-${event.event.index.toString()}`;
+  const historyId = `${blockData.hash}-${event.idx.toString()}`;
   const history = await getMint(historyId);
   history.blockId = blockData.id;
   history.timestamp = blockData.timestamp;

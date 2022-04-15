@@ -8,7 +8,7 @@ export const requestedRedeem = async (event: SubstrateEvent) => {
   const blockData = await ensureBlock(event);
   await getAccount(account.toString());
 
-  const historyId = `${blockData.hash}-${event.event.index.toString()}`;
+  const historyId = `${blockData.hash}-${event.idx.toString()}`;
   const history = await getRequestedRedeem(historyId);
   history.blockId = blockData.id;
   history.timestamp = blockData.timestamp;
