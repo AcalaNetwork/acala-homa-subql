@@ -22,3 +22,5 @@ export {Redeemed} from "./Redeemed"
 
 export {RedeemedByFastMatch} from "./RedeemedByFastMatch"
 
+export {Rate} from "./Rate"
+

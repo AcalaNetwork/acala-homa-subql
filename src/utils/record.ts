@@ -2,6 +2,7 @@ import { Account } from "../types";
 import { Block } from "../types/models/Block";
 import { Extrinsic } from "../types/models/Extrinsic";
 import { Mint } from "../types/models/Mint";
+import { Rate } from '../types/models/Rate';
 import { Redeemed } from "../types/models/Redeemed";
 import { RedeemedByFastMatch } from "../types/models/RedeemedByFastMatch";
 import { RedeemedByUnbond } from "../types/models/RedeemedByUnbond";
@@ -158,3 +159,19 @@ export const getRedeemedByFastMatch = async (id: string) => {
 		return record;
 	}
 };
+
+export const getRate = async(id: string) => {
+	const record = await Rate.get(id);
+
+	if (!record) {
+		const newRecord = new Rate(id);
+		newRecord.totalStaking = BigInt(0);
+		newRecord.totalLiquidity = BigInt(0);
+		newRecord.totalVoidLiquid = BigInt(0);
+		newRecord.exchangeRate = BigInt(0);
+		newRecord.timestamp = new Date();
+		return newRecord;
+	} else {
+		return record;
+	}
+}

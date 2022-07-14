@@ -1,4 +1,5 @@
 import { SubstrateEvent } from "@subql/types"
+import { currentEraBumped } from '../handlers/currentEraBumped';
 import { minted } from "../handlers/minted";
 import { redeemed } from "../handlers/redeemed";
 import { redeemedByFastMatch } from "../handlers/redeemedByFastMatch";
@@ -27,4 +28,7 @@ export const handleRedeemedByFastMatch = async (event: SubstrateEvent) => {
 }
 export const handleRedeemedByUnbond = async (event: SubstrateEvent) => {
   await RedeemedByUnbond(event);
+}
+export const handleCurrentEraBumped = async (event: SubstrateEvent) => {
+  await currentEraBumped(event);
 }

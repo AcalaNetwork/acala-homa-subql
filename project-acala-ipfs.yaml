@@ -69,3 +69,8 @@ dataSources:
           filter:
             module: homa
             method: RedeemedByUnbond
+        - handler: handleCurrentEraBumped
+          kind: substrate/EventHandler
+          filter:
+            module: homa
+            method: CurrentEraBumped

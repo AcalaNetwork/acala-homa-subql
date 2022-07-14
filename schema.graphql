@@ -125,3 +125,16 @@ type RedeemedByFastMatch @entity {
   extrinsic: Extrinsic
   timestamp: Date
 }
+
+type Rate @entity {
+  id: ID!
+
+  totalStaking: BigInt
+  totalLiquidity: BigInt
+  totalVoidLiquid: BigInt
+  exchangeRate: BigInt
+
+  block: Block
+  extrinsic: Extrinsic
+  timestamp: Date
+}
