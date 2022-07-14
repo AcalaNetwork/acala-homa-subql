@@ -3012,7 +3012,7 @@
   resolved "https://registry.yarnpkg.com/@subql/types/-/types-0.14.0.tgz#a736b27aa5f0b40f92befc871b56d115d64bf442"
   integrity sha512-J9GsAJ/Q7SH7HWV1DI3ORsi2T5+gFWm665iOpCNFOmsfuLNzrjjlyqoQhAaf45D8F8DeK/WooNnWFNPze8g1NQ==
 
-"@subql/types@1.1.0":
+"@subql/types@1.1.0", "@subql/types@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@subql/types/-/types-1.1.0.tgz#3e88cdd203a867d07938f5f43c9fc18c26e34aa1"
   integrity sha512-gvKE5LjMjiZfCTyAIQRWZuCMp9svbDz7+vTx5ZVHxe06hyfFpB5BalVdefeQySyi7nCjVoH4pV22AQK9Eyo58g==
@@ -3021,11 +3021,6 @@
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/@subql/types/-/types-0.10.1.tgz#71d944b5b6abf95e994d6a649f3b9063fb334686"
   integrity sha512-EeeXDsC0oppaeVUFbH0fNbpk25tRajm2NApnMK6lU4M4D++yIiYElncoU0JymgqKnFrEHVXLIFsFZ9pHoDZRHA==
-
-"@subql/types@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@subql/types/-/types-0.11.0.tgz#ff75100ab6196d913fce584e63a998523ae60950"
-  integrity sha512-dFT6coLViI3C690PuKxOSG41/Moe24y0N5H2g3r5KzsGuaC8hK5mcvg7OVikfwoXr3FZmsEfTC9Wi0FxGHi+yA==
 
 "@subql/utils@1.0.1":
   version "1.0.1"
